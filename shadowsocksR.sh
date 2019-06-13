@@ -291,7 +291,7 @@ download_files(){
         exit 1
     fi
 
-    if ! wget --no-check-certificate -O shadowsocksr-3.2.1.tar.gz https://github.com/caonimagfw/shadowsocksr/archive/3.2.2.tar.gz; then
+    if ! wget --no-check-certificate -O shadowsocksr-3.2.2.tar.gz https://github.com/caonimagfw/shadowsocksr/archive/3.2.2.tar.gz; then
         echo -e "[${red}Failed to download ShadowsocksR file!${plain}"
         exit 1
     fi
@@ -381,8 +381,8 @@ install(){
     ldconfig
 
     cd ${cur_dir}
-    tar zxf shadowsocksr-3.2.1.tar.gz
-    mv shadowsocksr-3.2.1/shadowsocks /usr/local/
+    tar zxf shadowsocksr-3.2.2.tar.gz
+    mv shadowsocksr-3.2.2/shadowsocks /usr/local/
     if [ -f /usr/local/shadowsocks/server.py ]; then
         chmod +x /etc/init.d/shadowsocks
         if check_sys packageManager yum; then
@@ -434,7 +434,7 @@ qr_link() {
 #Install cleanup
 install_cleanup(){
     cd ${cur_dir}
-    rm -rf shadowsocksr-3.2.1.tar.gz shadowsocksr-3.2.1 libsodium-${libsodium_ver}.tar.gz libsodium-${libsodium_ver}
+    rm -rf shadowsocksr-3.2.2.tar.gz shadowsocksr-3.2.2 libsodium-${libsodium_ver}.tar.gz libsodium-${libsodium_ver}
 }
 
 #Install shadowsocksr
