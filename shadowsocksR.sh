@@ -291,18 +291,18 @@ download_files(){
         exit 1
     fi
 
-    if ! wget --no-check-certificate -O shadowsocksr-3.2.1.tar.gz https://github.com/shadowsocksrr/shadowsocksr/archive/3.2.1.tar.gz; then
+    if ! wget --no-check-certificate -O shadowsocksr-3.2.1.tar.gz https://github.com/caonimagfw/shadowsocksr/archive/3.2.2.tar.gz; then
         echo -e "[${red}Failed to download ShadowsocksR file!${plain}"
         exit 1
     fi
 
     if check_sys packageManager yum; then
-        if ! wget --no-check-certificate https://raw.githubusercontent.com/uxh/shadowsocks_bash/master/shadowsocksR -O /etc/init.d/shadowsocks; then
+        if ! wget --no-check-certificate https://raw.githubusercontent.com/caonimagfw/shadowsocks/master/shadowsocksR -O /etc/init.d/shadowsocks; then
             echo -e "[${red}Failed to download ShadowsocksR chkconfig file!${plain}"
             exit 1
         fi
     elif check_sys packageManager apt; then
-        if ! wget --no-check-certificate https://raw.githubusercontent.com/uxh/shadowsocks_bash/master/shadowsocksR-debian -O /etc/init.d/shadowsocks; then
+        if ! wget --no-check-certificate https://raw.githubusercontent.com/caonimagfw/shadowsocks/master/shadowsocksR-debian -O /etc/init.d/shadowsocks; then
             echo -e "[${red}Failed to download ShadowsocksR chkconfig file!${plain}"
             exit 1
         fi
