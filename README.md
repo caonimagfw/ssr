@@ -31,3 +31,9 @@ wget --no-check-certificate -O shadowsocksR.sh https://raw.githubusercontent.com
 配置文件路径：/etc/shadowsocks.json
 日志文件路径：/var/log/shadowsocks.log
 代码安装目录：/usr/local/shadowsocks
+
+
+5.New 
+```bash
+wget --no-check-certificate -O onefast.sh https://raw.githubusercontent.com/caonimagfw/onefast/master/onefast.sh && bash onefast.sh
+```
