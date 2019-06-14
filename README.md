@@ -37,3 +37,7 @@ wget --no-check-certificate -O shadowsocksR.sh https://raw.githubusercontent.com
 ```bash
 wget --no-check-certificate -O onefast.sh https://raw.githubusercontent.com/caonimagfw/onefast/master/onefast.sh && bash onefast.sh
 ```
+
+6.
+如果你以后需要修改 ShadowsocksR 的配置信息（比如密码、端口等），可以运行下列命令：
+1. bash shadowsocksR.sh modify
