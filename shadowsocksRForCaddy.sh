@@ -221,7 +221,7 @@ pre_configure(){
         hint="${ciphers[$i-1]}"
         echo -e "${i}) ${hint}"
     done
-    read -p "(Default: ${ciphers[0]}):" pick
+    read -p "(Default: ${ciphers[5]}):" pick
     [ -z "$pick" ] && pick=1
     expr ${pick} + 1 &>/dev/null
     if [ $? -ne 0 ]; then
