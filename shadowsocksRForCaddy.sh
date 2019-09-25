@@ -214,7 +214,7 @@ pre_configure(){
     echo -e "${red}Please enter a number between 1 and 65535!${plain}"
     done
 
-    while true
+    while true  
     do
     echo -e "Please Select ShadowsocksR's Stream Cipher"
     for ((i=1;i<=${#ciphers[@]};i++ )); do
