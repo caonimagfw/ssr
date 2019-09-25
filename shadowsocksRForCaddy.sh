@@ -180,7 +180,7 @@ pre_configure(){
 
     while true
     do
-    dport=$(shuf -i 3000-8888 -n 1)
+    dport=80
     echo "Please Enter ShadowsocksR's Port (1~65535)"
     read -p "(Default: ${dport}):" shadowsocksport
     [ -z "${shadowsocksport}" ] && shadowsocksport=${dport}
