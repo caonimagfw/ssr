@@ -222,7 +222,7 @@ pre_configure(){
         echo -e "${i}) ${hint}"
     done
     read -p "(Default: ${ciphers[5]}):" pick
-    [ -z "$pick" ] && pick=1
+    [ -z "$pick" ] && pick=6
     expr ${pick} + 1 &>/dev/null
     if [ $? -ne 0 ]; then
         echo -e "${red}Please enter a number!${plain}"
