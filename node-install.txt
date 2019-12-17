@@ -1,0 +1,80 @@
+yum install -y gcc-c++ make
+curl -sL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+sudo yum install nodejs
+
+node -v
+
+-----
+yum -y install xrdp tigervnc-server
+
+systemctl start xrdp
+netstat -antup | grep xrdp
+systemctl enable xrdp
+
+--xfce 
+
+	--install: 
+	yum install epel-release -y
+	yum groupinstall "Xfce" -y
+	$ echo "xfce4-session" > ~/.Xclients
+	$ chmod a+x ~/.Xclients
+
+	--uninstall:
+	$ sudo yum groupremove -y "Xfce"
+	$ sudo yum remove -y libxfce4*
+
+
+$ sudo yum install -y epel-release
+$ sudo yum install -y xrdp
+$ sudo systemctl enable xrdp
+$ sudo systemctl start xrdp
+
+/etc/xrdp/xrdp.ini
+
+
+$ sudo firewall-cmd --add-port=3389/tcp --permanent
+$ sudo firewall-cmd --reload
+firewall-cmd --add-port=58899/tcp --permanent
+
+firewall-cmd --add-port=58800/tcp --permanent
+
+
+sudo service xrdp restart
+
+
+systemctl get-default
+systemctl set-default graphical.target
+systemctl get-default
+systemctl isolate graphical.target
+
+
+yum groupremove "Xfce"
+
+
+firewall-cmd --state
+systemctl stop firewalld.service
+systemctl disable firewalld.service 
+
+
+/etc/init.d/bt restart
+
+
+Congratulations! Installed successfully!
+==================================================================
+Bt-Panel: http://[2001:19f0:7001:4c5:5400:2ff:fe76:8e05]:8888/
+username: hxvye8k9
+password: 090fd39c
+Warning:  
+If you cannot access the panel,
+release the following port (8888|888|80|443|20|21) in the security group
+==================================================================
+Time consumed: 1 Minute!
+[root@vultr ~]# firewall-cmd --add-port=58800/tcp --permanent
+success
+[root@vultr ~]# sudo firewall-cmd --reload
+success
+[root@vultr ~]# cat /www/server/panel/data/port.pl
+8888
+[root@vultr ~]# vi /www/server/panel/data/port.pl
+58800
+~
