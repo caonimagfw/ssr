@@ -29,15 +29,35 @@ $ sudo yum install -y xrdp
 $ sudo systemctl enable xrdp
 $ sudo systemctl start xrdp
 
+firewall-cmd --list-ports
+firewall-cmd --zone=public --permanent --list-ports
+
 /etc/xrdp/xrdp.ini
 
+firewall-cmd --list-ports
 
 $ sudo firewall-cmd --add-port=3389/tcp --permanent
 $ sudo firewall-cmd --reload
 firewall-cmd --add-port=58899/tcp --permanent
 
 firewall-cmd --add-port=58800/tcp --permanent
+firewall-cmd --remove-port=port-number/port-type
 
+1. firewall-cmd --get-zones
+--zone=public --permanent --add-port=5000/tcp
+2.remove port 
+firewall-cmd  --zone=public --permanent --add-port=6900-7000/udp
+remove 
+
+firewall-cmd  --permanent --remove-port=20/tcp
+firewall-cmd --remove-port=20/tcp
+firewall-cmd --remove-port=21/tcp
+firewall-cmd --remove-port=8888/tcp
+
+firewall-cmd --reload
+firewall-cmd --permanent --zone=public --add-port=8080-8081/tcp //сю╬ц
+
+firewall-cmd --list-all
 
 sudo service xrdp restart
 
@@ -57,12 +77,26 @@ systemctl disable firewalld.service
 
 yum install -y wget && wget -O install.sh http://128.1.164.196:5880/install/install_6.0.sh && sh install.sh
 
-/etc/init.d/bt restart
 
+
+/etc/init.d/bt restart
 
 Congratulations! Installed successfully!
 ==================================================================
-Bt-Panel: http://[2001:19f0:7001:4c5:5400:2ff:fe76:8e05]:8888/
+Bt-Panel: http://xxxxxxx/f79ac185
+username: hsprvfug
+password: d7e123f0
+Warning:
+If you cannot access the panel,
+release the following port (8888|888|80|443|20|21) in the security group
+====================================
+
+bt
+enter 
+
+Congratulations! Installed successfully!
+==================================================================
+Bt-Panel: http://xxx:8888/
 username: hxvye8k9
 password: 090fd39c
 Warning:  
