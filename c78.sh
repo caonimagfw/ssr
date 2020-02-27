@@ -240,11 +240,7 @@ function preinstall()
 {
     sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 60/' /etc/ssh/sshd_config
     systemctl restart sshd
-    ret=`nginx -t`
-    if [ "$?" != "0" ]; then
-        echo "更新系统..."
-        yum update -y
-    fi
+    yum update -y
     echo "安装必要软件"
     yum install -y epel-release telnet curl wget vim net-tools libsodium openssl unzip
     if [ $main -eq 8 ]; then
