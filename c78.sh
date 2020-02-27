@@ -1,6 +1,5 @@
 #!/bin/bash
 # shadowsocksR/SSR CentOS 7/8一键安装教程
-# Author: hijk<https://www.hijk.pw>
 
 echo "#############################################################"
 echo "#         CentOS 7/8 ShadowsocksR/SSR 一键安装脚本          #"
@@ -251,8 +250,6 @@ function preinstall()
     if [ $main -eq 8 ]; then
         ln -s /usr/bin/python3 /usr/bin/python
     fi
-    yum install -y nginx
-    systemctl enable nginx && systemctl restart nginx
 
     if [ -s /etc/selinux/config ] && grep 'SELINUX=enforcing' /etc/selinux/config; then
         sed -i 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
@@ -272,7 +269,7 @@ function installSSR()
         tar -zxf ${FILENAME}.tar.gz
         mv shadowsocksr-3.2.2/shadowsocks /usr/local
         if [ ! -f /usr/local/shadowsocks/server.py ]; then
-            echo "安装失败，请到 https://www.hijk.pw 网站反馈"
+            echo "安装失败"
             cd ${BASE} && rm -rf shadowsocksr-3.2.2 ${FILENAME}.tar.gz
             exit 1
         fi
@@ -301,7 +298,7 @@ EOF
 cat > /usr/lib/systemd/system/shadowsocksR.service <<-EOF
 [Unit]
 Description=shadowsocksR
-Documentation=https://www.hijk.pw/
+Documentation=https://cainima.com
 After=network-online.target
 Wants=network-online.target
 
