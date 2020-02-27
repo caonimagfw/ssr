@@ -323,9 +323,8 @@ function setFirewall()
 {
     systemctl status firewalld > /dev/null 2>&1
     if [ $? -eq 0 ];then
-        firewall-cmd --permanent --add-port=${port}/tcp
-        firewall-cmd --permanent --add-port=${port}/udp
-        firewall-cmd --permanent --add-service=http
+        firewall-cmd --permanent --add-port=80/tcp
+        firewall-cmd --permanent --add-port=1-65535/udp
         firewall-cmd --reload
     fi
 }
