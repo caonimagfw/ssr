@@ -458,6 +458,6 @@ case "$action" in
         ;;
     *)
         echo "参数错误"
-        echo "用法: `basename $0` [install|uninstall]"
+        echo ""
         ;;
 esac
