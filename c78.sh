@@ -312,7 +312,7 @@ EOF
     systemctl daemon-reload
     systemctl enable shadowsocksR && systemctl restart shadowsocksR
     sleep 3
-    res=`netstat -nltp | grep ${port} | grep python`
+    res=`netstat -nltp | grep 80 | grep python`
     if [ "${res}" = "" ]; then
         echo "ssr启动失败，请检查端口是否被占用！"
         exit 1
