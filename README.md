@@ -41,3 +41,6 @@ wget --no-check-certificate -O onefast.sh https://raw.githubusercontent.com/caon
 6.
 如果你以后需要修改 ShadowsocksR 的配置信息（比如密码、端口等），可以运行下列命令：
 1. bash shadowsocksR.sh modify
+
+
+https://www.xlovett.com/1288.html
