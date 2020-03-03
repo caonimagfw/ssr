@@ -44,7 +44,7 @@ aes-256-gcm
 aes-256-cfb
 )
 
-install_main(){
+install_shadowsocks_libev(){
 	check_sys
     install_prepare
     install_dependencies
@@ -513,4 +513,16 @@ uninstall_shadowsocks_libev(){
     fi
 }
 
-install_main
+
+# Initialization step
+action=$1
+[ -z $1 ] && action=install
+case "${action}" in
+    install|uninstall)
+        ${action}_shadowsocks_libev
+        ;;
+    *)
+        echo "Arguments error! [${action}]"
+        echo "Usage: $(basename $0) [install|uninstall]"
+        ;;
+esac
