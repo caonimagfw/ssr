@@ -62,7 +62,7 @@ install_shadowsocks_libev_main(){
     install_shadowsocks_libev
     install_shadowsocks_libev_obfs
 	install_completed_libev
-    config_firewall
+    # config_firewall
     install_cleanup
 }
 
