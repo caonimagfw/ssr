@@ -44,7 +44,7 @@ aes-256-gcm
 aes-256-cfb
 )
 
-install_shadowsocks_libev(){
+install_shadowsocks_libev_main(){
 	check_sys
     install_prepare
     install_dependencies
@@ -231,7 +231,7 @@ config_shadowsocks_libev(){
 	fi
 
     local server_value="\"0.0.0.0\""
-    local names_servers = "\"2001:4860:4860::8844,8.8.4.4\""
+    local names_servers = "\"8.8.4.4\""
     if get_ipv6; then
         server_value="[\"[::0]\",\"0.0.0.0\"]"
         names_servers="\"2001:4860:4860::8844,8.8.4.4\""
@@ -465,7 +465,7 @@ install_prepare(){
     char=`get_char`
 
 }
-uninstall_shadowsocks_libev(){
+uninstall_shadowsocks_libev_main(){
     printf "Are you sure uninstall ${red}${software[3]}${plain}? [y/n]\n"
     read -p "(default: n):" answer
     [ -z ${answer} ] && answer="n"
@@ -519,7 +519,7 @@ action=$1
 [ -z $1 ] && action=install
 case "${action}" in
     install|uninstall)
-        ${action}_shadowsocks_libev
+        ${action}_shadowsocks_libev_main
         ;;
     *)
         echo "Arguments error! [${action}]"
