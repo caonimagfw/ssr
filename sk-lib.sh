@@ -504,11 +504,11 @@ uninstall_shadowsocks_libev(){
         rm -f /usr/local/share/man/man1/ss-nat.1
         rm -f /usr/local/share/man/man8/shadowsocks-libev.8
         rm -fr /usr/local/share/doc/shadowsocks-libev
-        rm -f ${shadowsocks_libev_init}
-        echo -e "[${green}Info${plain}] ${software[3]} uninstall success"
+        rm -f ${shadowsocks_libev_service}
+        echo -e "[${green}Info${plain}] uninstall success"
     else
         echo
-        echo -e "[${green}Info${plain}] ${software[3]} uninstall cancelled, nothing to do..."
+        echo -e "[${green}Info${plain}] uninstall cancelled, nothing to do..."
         echo
     fi
 }
