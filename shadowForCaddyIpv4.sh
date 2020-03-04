@@ -376,8 +376,8 @@ config_shadowsocks(){
     "obfs_param":"",
     "redirect":["*:${shadowsocksport}#127.0.0.1:${caddyportinput}"],
     "dns_ipv6":false,
-    "fast_open":false,
-    "workers":100
+    "fast_open":true,
+    "workers":10
 }
 EOF
 }
