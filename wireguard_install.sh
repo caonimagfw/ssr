@@ -73,10 +73,13 @@ EOF
 }
 
 #centos7安装wireguard
+#wireguard-dkms
+#wireguard-tools
 wireguard_install(){
+
     curl -Lo /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
     yum install -y dkms gcc-c++ gcc-gfortran glibc-headers glibc-devel libquadmath-devel libtool systemtap systemtap-devel
-    yum -y install wireguard-dkms wireguard-tools
+    yum -y install  wireguard-tools
     yum -y install qrencode
     mkdir /etc/wireguard
     cd /etc/wireguard
