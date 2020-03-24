@@ -15,6 +15,8 @@ fi
 #更新内核
 update_kernel(){
 
+    curl -Lo /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+    yum install -y dkms gcc-c++ gcc-gfortran glibc-headers glibc-devel libquadmath-devel libtool systemtap systemtap-devel
     yum -y install epel-release curl
     sed -i "0,/enabled=0/s//enabled=1/" /etc/yum.repos.d/epel.repo
     yum remove -y kernel-devel
@@ -73,12 +75,12 @@ EOF
 }
 
 #centos7安装wireguard
-#wireguard-dkms
+#
 #wireguard-tools
 wireguard_install(){
 
-    curl -Lo /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
-    yum install -y dkms gcc-c++ gcc-gfortran glibc-headers glibc-devel libquadmath-devel libtool systemtap systemtap-devel
+
+    yum -y install  wireguard-dkms
     yum -y install  wireguard-tools
     yum -y install qrencode
     mkdir /etc/wireguard
