@@ -117,8 +117,8 @@ pwd=$4
 [ -z $1 ] && [ -z $2 ] && [ -z $3 ] && [ -z $4 ]
 case "$method" in
     80|443)
-        set_caddy_$method()
-        set_config_$method()
+        set_caddy_$method
+        set_config_$method
         echo "new Caddyfile :"
         cat /usr/local/caddy/Caddyfile
 
