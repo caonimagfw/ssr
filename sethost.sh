@@ -21,7 +21,7 @@ set_caddy_80()
 		:8099 {
 			redir https://{$subdomain}{uri}
 		}
-	EOF
+EOF
 
 }
 
@@ -43,7 +43,7 @@ set_caddy_443()
 		:80 {
 			redir https://{$subdomain}{uri}
 		}
-	EOF
+EOF
 
 }
 
@@ -75,7 +75,7 @@ set_config_80()
 	    "fast_open":false,
 	    "workers":10
 	}
-	EOF
+EOF
 }
 
 set_config_443()
@@ -104,7 +104,7 @@ set_config_443()
 	    "fast_open":false,
 	    "workers":10
 	}
-	EOF
+EOF
 }
 
 #args
