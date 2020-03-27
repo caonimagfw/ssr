@@ -1,4 +1,5 @@
 #!/bin/bash
+# bash sethost.sh xxx.net aa.xxx.net 80 passwd
 
 #Set Caddy 
 # /usr/local/caddy/Caddyfile
