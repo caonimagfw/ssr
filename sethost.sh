@@ -63,7 +63,7 @@ set_config_80()
 	    "server_port":80,
 	    "local_address":"127.0.0.1",
 	    "local_port":1080,
-	    "password":"{$pwd}",
+	    "password":"$pwd",
 	    "timeout":120,
 	    "method":"none",
 	    "protocol":"auth_chain_a",
@@ -92,7 +92,7 @@ set_config_443()
 	    "server_port":443,
 	    "local_address":"127.0.0.1",
 	    "local_port":1080,
-	    "password":"{$pwd}",
+	    "password":"$pwd",
 	    "timeout":120,
 	    "method":"none",
 	    "protocol":"auth_chain_a",
@@ -122,7 +122,11 @@ case "$method" in
         cat /usr/local/caddy/Caddyfile
 
         echo "new Fuck Wall Config :"
-        cat etc/shadowsocks.json
+        cat /etc/shadowsocks.json
+        service caddy stop 
+        systemctl restart shadowsocks
+        service caddy start 
+        echo "Setting done, Fuck FangBX"
         ;;
     *)
         echo "Arguments error! [${action}]"
