@@ -161,3 +161,4 @@
 ||abema.tv
 ||ameblo.jp
 ||akamaized.net
+||cloudcone.com
