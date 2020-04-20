@@ -88,7 +88,6 @@ set_config_443()
 	cat > /etc/shadowsocks.json << EOF
 	{
 	    "server":"0.0.0.0",
-	    "server_ipv6":"[::]",
 	    "server_port":443,
 	    "local_address":"127.0.0.1",
 	    "local_port":1080,
