@@ -100,7 +100,7 @@ set_config_443()
 	    "obfs":"plain",
 	    "obfs_param":"",
 	    "redirect":["*:443#127.0.0.1:8100"],
-	    "dns_ipv6":true,
+	    "dns_ipv6":false,
 	    "fast_open":false,
 	    "workers":10
 	}
