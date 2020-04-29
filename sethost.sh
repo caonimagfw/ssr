@@ -68,13 +68,13 @@ set_config_80()
 	    "timeout":120,
 	    "method":"none",
 	    "protocol":"auth_chain_a",
-	    "protocol_param":"9999",
+	    "protocol_param":"999990",
 	    "obfs":"plain",
 	    "obfs_param":"",
 	    "redirect":["*:80#127.0.0.1:8099"],
 	    "dns_ipv6":true,
 	    "fast_open":false,
-	    "workers":10
+	    "workers":8
 	}
 EOF
 }
@@ -97,13 +97,13 @@ set_config_443()
 	    "timeout":120,
 	    "method":"none",
 	    "protocol":"auth_chain_a",
-	    "protocol_param":"9999",
-	    "obfs":"plain",
+	    "protocol_param":"999990",
+	    "obfs":"tls1.2_ticket_auth",
 	    "obfs_param":"",
 	    "redirect":["*:443#127.0.0.1:8100"],
 	    "dns_ipv6":true,
 	    "fast_open":false,
-	    "workers":10
+	    "workers":8
 	}
 EOF
 }
