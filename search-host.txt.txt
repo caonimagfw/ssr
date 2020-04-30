@@ -1,7 +1,7 @@
 var hlist = [];   
-var s=700;
-var e=799;
-
+var s=800;
+var e=999;
+//$('#options span.label-info').length
 for(var i=s; i<= e;i++) 
 {
     var u = 'https://app.cloudcone.com/compute/' + i + '/create';
@@ -16,33 +16,50 @@ for(var i=s; i<= e;i++)
             var $h = $(data);
             var mm = '';
             var ma = '';
-            if($h.find('p.message'))
+            //console.log ($h.find('p.message').text());
+            if($h.find('p.message') &&  $h.find('p.message').text().indexOf('This plan is out of stock') >=0 )
             {
-                if( $h.find('p.message').text().indexOf('This plan is out of stock') >=0 )
-                {
-                    mm = 'It is out';
-                    console.log( 'It is out');
-                }else{
-                    mm = 'It is good';
-                    
+                mm = 'It is out';
+                console.log( 'It is out');
+            }else
+            {
 
-                    if($h.find('h1.text-success small') &&  $h.find('h1.text-success small').text().indexOf('/YR') >=0)
-                    {
-                        console.log( 'It is good'); 
-                        //console.log ($h.find('h1.text-success span[id="final-month-price"]'));
-                        ma = $h.find('h1.text-success span[id="final-month-price"]').text(); //.text();
-                        //console.log(ma);
-                        //final-month-price
-                        hlist.push( {
-                            'ID':i*1.0,
-                            'info':mm ,
-                            'url':u,
-                            'money':ma
-                        });
-                    }
-                   
+                mm = 'It is good';
+                console.log(mm);
+                console.log ($h.find('#options span.label-info').text());
+                if($h.find('#options span.label-info').text().indexOf('SSD') == true || $h.find('#options span.label-info').text().indexOf('SSD') >= 0)
+                {
+                    console.log( 'Add'); 
+                    //console.log( 'It is good'); 
+                    //console.log ($h.find('h1.text-success span[id="final-month-price"]'));
+                    ma = $h.find('h1.text-success span[id="final-month-price"]').text(); //.text();
+                    //console.log(ma);
+                    //final-month-price
+                    hlist.push( {
+                        'ID':i*1.0,
+                        'info':mm ,
+                        'url':u,
+                        'money':ma
+                    });
+
                 }
+                //if($h.find('h1.text-success small') &&  $h.find('h1.text-success small').text().indexOf('/YR') >=0)
+                //{
+                //    console.log( 'It is good'); 
+                //    //console.log ($h.find('h1.text-success span[id="final-month-price"]'));
+                //    ma = $h.find('h1.text-success span[id="final-month-price"]').text(); //.text();
+                //    //console.log(ma);
+                //    //final-month-price
+                //    hlist.push( {
+                //        'ID':i*1.0,
+                //        'info':mm ,
+                //        'url':u,
+                //        'money':ma
+                //    });
+                //}
+                   
             }
+            
             //$h.find('h1.text-success small').text().indexOf('/YR') >=0
             //var item = {};
             //item.ID = i*1; /YR
@@ -50,14 +67,12 @@ for(var i=s; i<= e;i++)
             //console.log (i*1.0) ;             
 
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log( '**** :( Error'); 
-        },
+    
         beforeSend: function () {
         },
         complete: function () {
         }
     });            
 }
-
+console.log(hlist.length);
 console.log(hlist);
