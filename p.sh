@@ -9,6 +9,6 @@ mv pypy2.7-v7.3.1-linux64 pypy
 mv pypy /usr/local/
 
 #create link 
-if [ ! -d "/usr/bin/pypy" ]; then
+if [ ! -f "/usr/bin/pypy" ]; then
 	ln -s  /usr/local/pypy/bin/pypy /usr/bin/pypy
 fi
