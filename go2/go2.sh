@@ -262,9 +262,9 @@ Set_verbose(){
 }
 
 Set_redir(){
-        green "======================="
-        yellow "Input redirect address, 127.0.0.1:xxxx, or :xxxx"
-        green "======================="
+        echo && echo -e " ${Green_font_prefix}  =======================
+        ${Green_font_prefix} Input redirect address, 127.0.0.1:xxxx, or :xxxx 
+        ${Green_font_prefix} =======================${Font_color_suffix} "
         read ss_redir
 
 		echo && echo "========================"
