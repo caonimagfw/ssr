@@ -36,7 +36,7 @@ read_config(){
 	port=$(cat ${CONF}|grep 'PORT = '|awk -F 'PORT = ' '{print $NF}')
 	password=$(cat ${CONF}|grep 'PASSWORD = '|awk -F 'PASSWORD = ' '{print $NF}')
 	cipher=$(cat ${CONF}|grep 'CIPHER = '|awk -F 'CIPHER = ' '{print $NF}')
-	verbose=$(cat ${CONF}|grep 'VERBOSE = '|awk -F 'VERBOSE = ' '{print $NF}')
+	verbose=$(cat ${CONF}|grep 'VERBOSE = '|awk -F 'VERBOSE = ' '{print $NF}')	
 	if [[ "${verbose}" == "YES" ]]; then
 		verbose="-verbose"
 	else
@@ -52,7 +52,7 @@ do_start(){
 		cd ${FOLDER}
 		echo -e "${Info} $NAME 启动中..."
 		ulimit -n 51200
-		nohup ./shadowsocks-go -s ":${port}" -cipher "${cipher}" -password "${password}" "${verbose}" >> "${LOG}" 2>&1 &
+		nohup ./shadowsocks-go -s ":${port}" -redir "${port}" -cipher "${cipher}" -password "${password}" "${verbose}" >> "${LOG}" 2>&1 &
 		sleep 2s
 		check_running
 		if [[ $? -eq 0 ]]; then
