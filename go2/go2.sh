@@ -155,15 +155,8 @@ PORT = ${ss_port}
 PASSWORD = ${ss_password}
 CIPHER = ${ss_cipher}
 VERBOSE = ${ss_verbose}
+REDIR = ${ss_redir}
 EOF
-	#DNSCONF
-	if [[ ${release} == "centos" ]]; then
-		cat > ${DNSCONF}<<-EOF
-nameserver = 1.1.1.1
-nameserver = 8.8.8.8
-nameserver = 114.114.114.114
-EOF
-	fi
 
 
 }
@@ -268,6 +261,17 @@ Set_verbose(){
 	echo "========================" && echo
 }
 
+Set_redir(){
+        green "======================="
+        yellow "Input redirect address, 127.0.0.1:xxxx, or :xxxx"
+        green "======================="
+        read ss_redir
+
+		echo && echo "========================"
+		echo -e "	Redirect Address : ${Red_background_prefix} ${ss_redir} ${Font_color_suffix}"
+		echo "========================" && echo
+	
+}
 
 Set(){
 	check_installed_status
@@ -309,7 +313,7 @@ Set(){
 		Restart
 	elif [[ "${ss_modify}" == "4" ]]; then
 		Read_config
-		Set_verbose
+		Set_verbose		
 		ss_port=${port}
 		ss_password=${password}
 		ss_cipher=${cipher}
@@ -321,6 +325,7 @@ Set(){
 		Set_password
 		Set_cipher
 		Set_verbose
+		Set_redir
 		Write_config
 		Restart
 	elif [[ "${ss_modify}" == "6" ]]; then
@@ -337,6 +342,7 @@ Install(){
 	Set_password
 	Set_cipher
 	Set_verbose
+	Set_redir
 	echo -e "${Info} 开始安装/配置 依赖..."
 	Installation_dependency
 	echo -e "${Info} 开始下载/安装..."
