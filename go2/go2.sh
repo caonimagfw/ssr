@@ -158,7 +158,7 @@ VERBOSE = ${ss_verbose}
 EOF
 	#DNSCONF
 	if [[ ${release} == "centos" ]]; then
-		cat > ${CONF}<<-EOF
+		cat > ${DNSCONF}<<-EOF
 nameserver = 1.1.1.1
 nameserver = 8.8.8.8
 nameserver = 114.114.114.114
