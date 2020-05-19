@@ -206,7 +206,7 @@ Set_cipher(){
 
  ${Tip} chacha20 系列加密方式无需额外安装 libsodium，Shadowsocks Go版默认集成 !" && echo
 	read -e -p "(默认: 1. aes-128-gcm ):" ss_cipher
-	[[ -z "${ss_cipher}" ]] && ss_cipher="9"
+	[[ -z "${ss_cipher}" ]] && ss_cipher="1"
 	if [[ ${ss_cipher} == "1" ]]; then
 		ss_cipher="AES-128-GCM"
 	elif [[ ${ss_cipher} == "2" ]]; then
