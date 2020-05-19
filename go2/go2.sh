@@ -199,48 +199,22 @@ Set_password(){
 Set_cipher(){
 	echo -e "请选择 Shadowsocks 加密方式
 	
- ${Green_font_prefix} 1.${Font_color_suffix} aes-128-cfb
- ${Green_font_prefix} 2.${Font_color_suffix} aes-128-ctr
- ${Green_font_prefix} 3.${Font_color_suffix} aes-192-cfb
- ${Green_font_prefix} 4.${Font_color_suffix} aes-192-ctr
- ${Green_font_prefix} 5.${Font_color_suffix} aes-256-cfb
- ${Green_font_prefix} 6.${Font_color_suffix} aes-256-ctr
- ${Green_font_prefix} 7.${Font_color_suffix} chacha20-ietf
- ${Green_font_prefix} 8.${Font_color_suffix} xchacha20
- ${Green_font_prefix} 9.${Font_color_suffix} aes-128-gcm            (AEAD)
- ${Green_font_prefix}10.${Font_color_suffix} aes-192-gcm            (AEAD)
- ${Green_font_prefix}11.${Font_color_suffix} aes-256-gcm            (AEAD)
- ${Green_font_prefix}12.${Font_color_suffix} chacha20-ietf-poly1305 (AEAD)
+
+ ${Green_font_prefix} 1.${Font_color_suffix} aes-128-gcm            (AEAD)
+ ${Green_font_prefix} 2.${Font_color_suffix} aes-256-gcm            (AEAD)
+ ${Green_font_prefix} 3.${Font_color_suffix} chacha20-ietf-poly1305 (AEAD)
 
  ${Tip} chacha20 系列加密方式无需额外安装 libsodium，Shadowsocks Go版默认集成 !" && echo
-	read -e -p "(默认: 9. aes-128-gcm ):" ss_cipher
+	read -e -p "(默认: 1. aes-128-gcm ):" ss_cipher
 	[[ -z "${ss_cipher}" ]] && ss_cipher="9"
 	if [[ ${ss_cipher} == "1" ]]; then
-		ss_cipher="aes-128-cfb"
+		ss_cipher="AES-128-GCM"
 	elif [[ ${ss_cipher} == "2" ]]; then
-		ss_cipher="aes-128-ctr"
+		ss_cipher="AES-256-GCM"
 	elif [[ ${ss_cipher} == "3" ]]; then
-		ss_cipher="aes-192-cfb"
-	elif [[ ${ss_cipher} == "4" ]]; then
-		ss_cipher="aes-192-ctr"
-	elif [[ ${ss_cipher} == "5" ]]; then
-		ss_cipher="aes-256-cfb"
-	elif [[ ${ss_cipher} == "6" ]]; then
-		ss_cipher="aes-256-ctr"
-	elif [[ ${ss_cipher} == "7" ]]; then
-		ss_cipher="chacha20-ietf"
-	elif [[ ${ss_cipher} == "8" ]]; then
-		ss_cipher="xchacha20"
-	elif [[ ${ss_cipher} == "9" ]]; then
-		ss_cipher="aead_aes_128_gcm"
-	elif [[ ${ss_cipher} == "10" ]]; then
-		ss_cipher="aead_aes_192_gcm"
-	elif [[ ${ss_cipher} == "11" ]]; then
-		ss_cipher="aead_aes_256_gcm"
-	elif [[ ${ss_cipher} == "12" ]]; then
-		ss_cipher="aead_chacha20_poly1305"
+		ss_cipher="CHACHA20-IETF-POLY1305"
 	else
-		ss_cipher="aead_chacha20_poly1305"
+		ss_cipher="CHACHA20-IETF-POLY1305"
 	fi
 	echo && echo "========================"
 	echo -e "	加密 : ${Red_background_prefix} ${ss_cipher} ${Font_color_suffix}"
