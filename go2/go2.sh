@@ -213,8 +213,8 @@ Set_cipher(){
  ${Green_font_prefix}12.${Font_color_suffix} chacha20-ietf-poly1305 (AEAD)
 
  ${Tip} chacha20 系列加密方式无需额外安装 libsodium，Shadowsocks Go版默认集成 !" && echo
-	read -e -p "(默认: 9. aes-128-gcm):" ss_cipher
-	[[ -z "${ss_cipher}" ]] && ss_cipher="9"
+	read -e -p "(默认: 12. chacha20-ietf-poly1305):" ss_cipher
+	[[ -z "${ss_cipher}" ]] && ss_cipher="12"
 	if [[ ${ss_cipher} == "1" ]]; then
 		ss_cipher="aes-128-cfb"
 	elif [[ ${ss_cipher} == "2" ]]; then
@@ -262,9 +262,7 @@ Set_verbose(){
 }
 
 Set_redir(){
-        echo && echo -e " ${Green_font_prefix}  =======================
-        ${Green_font_prefix} Input redirect address, 127.0.0.1:xxxx, or :xxxx 
-        ${Green_font_prefix} =======================${Font_color_suffix} "
+        echo && echo -e "Input redirect address, 127.0.0.1:xxxx, or :xxxx"
         read ss_redir
 
 		echo && echo "========================"
