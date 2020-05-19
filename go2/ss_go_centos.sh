@@ -41,7 +41,7 @@ read_config(){
 	if [[ "${verbose}" == "YES" ]]; then
 		verbose="-verbose"
 	else
-		verbose=""
+		verbose=" "
 	fi
 }
 do_start(){
