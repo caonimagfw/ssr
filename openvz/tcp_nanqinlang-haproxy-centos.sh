@@ -7,7 +7,7 @@ ${Green_font}
 #================================================
 # Project:  tcp_nanqinlang lkl-haproxy
 # Platform: --CentOS --openvz
-# Version: 1.1.1
+# Version: 1.1.11
 # Author: nanqinlang
 # Blog:   https://sometimesnaive.org
 # Github: https://github.com/nanqinlang
