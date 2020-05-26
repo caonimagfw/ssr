@@ -1,0 +1,121 @@
+## Docker For win 10 
+
+Down load address
+
+``` 
+https://hub.docker.com/editions/community/docker-ce-desktop-windows/
+```
+
+open Hyper-V
+``` 
+控制面板 -> 程序 -> 启用或关闭Windows功能 -> 选中Hyper-V
+``` 
+
+```
+#add cn respose
+
+在registry mirrors里面添加 https://registry.docker-cn.com
+
+mkdir /var/opt/mssql/backup
+sudo docker cp /Users/front/Downloads/beifen.bak MSSQL_1433:/var/opt/mssql/backup
+
+sudo docker cp /Users/front/Downloads/beifen.bak MSSQL_1433:/var/opt/mssql/backup
+
+
+RESTORE DATABASE [SQLShackDemo] FROM DISK = N’/var/opt/mssql/data/SQLShackDemo.bak’ with REPLACE
+
+```
+
+Run:
+``` 
+#create volumn 
+docker volume create gitlab-data
+#set to up line 
+docker-compose up -d
+
+  -v /d/docker/volumes/mssql1:/var/opt/mssql 
+    -d microsoft/mssql-server-linux:2017-latest
+    
+
+docker run -e'ACCEPT_EULA=Y' -e'MSSQL_SA_PASSWORD=thanVitha@2015' --name sqldemo  –v sqlservervolume:/var/opt/mssql -d microsoft/mssql-server-linux:2017-latest
+
+-v 宿主机目录:虚拟机目录
+-v ~/data/sqlserver:/opt/backup 
+
+
+#copy file 
+docker cp G:/docker/soft/Hostp/lyhis160324TH/lyhis160324TH.bak sql2017:var/opt/mssql/bb/
+
+#goto docker 
+docker exec -it shackdemo2 bash
+
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA Password:
+
+
+RESTORE DATABASE [lyhis] FROM DISK = N’/var/opt/mssql/bb/lyhis160324TH.bak’ with REPLACE
+
+
+sudo docker pull mcr.microsoft.com/mssql/server:2017-latest
+#
+
+# ACCEPT_EULA=Y must set 
+# password must set 
+# -p port to port 
+# -name set 
+
+--cap-add SYS_TIME
+sudo 
+
+docker run -e 'ACCEPT_EULA=Y' --cap-add SYS_TIME -e 'SA_PASSWORD=A1234@AZSX'  -p 2433:2433 --name sql2017  -d mcr.microsoft.com/mssql/server:2017-latest –v G:\\docker\\sql2017:/var/opt/mssql
+
+docker run -e 'ACCEPT_EULA=Y' --cap-add SYS_TIME -e 'SA_PASSWORD=A1234@AZSX'  -p 2433:2433 --name sql2017 -v /g/docker/soft/Hostp/lyhis160324TH:/var/opt/mssql/b1 -d mcr.microsoft.com/mssql/server:2017-latest
+
+
+docker run -e 'ACCEPT_EULA=Y' --cap-add SYS_TIME -e 'SA_PASSWORD=A1234@AZSX'  -p 2433:2433 --name sql2017  -v /g/docker/soft/Hostp/lyhis160324TH:/var/opt/mssql/b1  -d mcr.microsoft.com/mssql/server:2017-latest
+docker run -e 'ACCEPT_EULA=Y' --cap-add SYS_TIME -e 'SA_PASSWORD=A1234@AZSX'  -p 2433:2433 --name sql2017  -v  g:/docker/sql2017:/var/opt/mssql/data  -d mcr.microsoft.com/mssql/server:2017-latest
+
+
+ -v  G:/docker/soft/Hostp/lyhis160324TH:/var/opt/mssql/b1 -v g:/docker/sql2017:/var/opt/mssql/data
+ -v g:/docker/sql2017:/var/opt/mssql/data
+
+-d mcr.microsoft.com/mssql/server:2017-latest 
+
+–v g:/docker\\sql2017:/var/opt/mssql
+
+-v g:/docker/sql2017:/var/opt/mssql/data
+
+
+RESTORE DATABASE [lyhis] FROM DISK = '/var/opt/mssql/bb/lyhis160324TH.bak' 
+
+  WITH MOVE 'lyhis' TO '/var/opt/mssql/data/lyhis.mdf',
+   MOVE 'lyhis_log' TO '/var/opt/mssql/data/lyhis.ldf'
+
+
+
+  WITH MOVE 'lyhis' TO '/var/opt/mssql/data/lyhis.mdf',
+   MOVE 'lyhis_log' TO '/var/opt/mssql/data/lyhis.ldf'
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong!Passw0rd>" `
+   -p 1433:1433 --name sql1 `
+   -d mcr.microsoft.com/mssql/server:2017-latest
+docker ps –a
+
+#get sql server 
+docker pull microsoft/mssql-server-linux
+
+#run 
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=[包含大小写字母、数字的长度不少于8位数的密码]" --privileged=true -v /mnt/mssql/data  -p 1433:1433 -d microsoft/mssql-server-linux
+
+#restore 
+
+USE master
+RESTORE DATABASE exam 
+   FROM DISK = '/var/opt/mssql/backup/exam.bak'
+   WITH MOVE 'exam' TO '/var/opt/mssql/data/exam.mdf', 
+   MOVE 'exam_log' TO '/var/opt/mssql/data/exam.ldf'
+GO
+
+#if error 
+RESTORE FILELISTONLY 
+FROM DISK = '/var/opt/mssql/backup/example.bak'
+```
