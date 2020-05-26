@@ -1,0 +1,17 @@
+
+
+```
+# change email
+acme.sh --server https://api.buypass.com/acme/directory \
+        --register-account  --accountemail me@example.com
+
+
+
+acme.sh --server https://api.buypass.com/acme/directory  \
+        --issue -d sm.link -d www.sm.link \
+        --dns dns_ali \
+        #--keylength ec-256 \  # 此字段用于签发ECC证书,不需要请删除此行
+        --days 180  # 此字段用于指定续签时间,90就是90天续签一次,不需要请删除此行
+
+# sm.link 改为你的域名,增加域名使用 `-d` 分隔
+```
