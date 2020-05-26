@@ -25,7 +25,7 @@ check_root(){
 
 check_ovz(){
 	yum update && yum install -y virt-what
-	[[ "`virt-what`" != "openvz" ]] && echo -e "${Error} only support OpenVZ !" && exit 1
+	[[ "`virt-what`" != *"openvz"* ]] && echo -e "${Error} only support OpenVZ !" && exit 1
 }
 
 check_ldd(){
