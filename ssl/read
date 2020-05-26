@@ -1,17 +1,18 @@
 
 
+
 ```
-# change email
-acme.sh --server https://api.buypass.com/acme/directory \
-        --register-account  --accountemail me@example.com
+#set path to woking path
 
+```
 
+```
+openssl genrsa -des3 -out CA/root.key 1024
 
-acme.sh --server https://api.buypass.com/acme/directory  \
-        --issue -d sm.link -d www.sm.link \
-        --dns dns_ali \
-        #--keylength ec-256 \  # 此字段用于签发ECC证书,不需要请删除此行
-        --days 180  # 此字段用于指定续签时间,90就是90天续签一次,不需要请删除此行
+openssl req -new -key CA/root.key -out CA/root.csr
 
-# sm.link 改为你的域名,增加域名使用 `-d` 分隔
+openssl rsa -in CA/root.key -out CA/root_no_pwd.key
+
+openssl x509 -req -days 3650 -in xxx/xxx.net.csr -signkey CA/root_no_pwd.key -out xxx/xxx.net.crt
+
 ```
