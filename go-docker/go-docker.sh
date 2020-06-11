@@ -211,3 +211,5 @@ case "$num" in
 	;;
 esac
 }
+
+mainControl
