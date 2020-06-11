@@ -1,9 +1,17 @@
+#!/usr/bin/env bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+#=================================================
+#	.@@.
+#=================================================
 
 Green_font_prefix="\033[32m"
 Red_font_prefix="\033[31m"
 Green_background_prefix="\033[42;37m"
 Red_background_prefix="\033[41;37m"
 Font_color_suffix="\033[0m"
+
 
 install_docker(){
 	#update fire wall
@@ -17,7 +25,7 @@ install_docker(){
 	firewall-cmd --permanent --zone=trusted --add-masquerade
 	firewall-cmd --reload
 
-	echo -e "install tools..."
+	echo -e "install tools.@@."
 	yum -y install wget net-tools bridge-utils && yum -y install epel-release && yum -y install unar
 		wget --no-check-certificate -O caddy_install.sh https://raw.githubusercontent.com/caonimagfw/Caddy/master/caddy_install.sh && bash caddy_install.sh
 	cat > /usr/local/caddy/Caddyfile <<-EOF
@@ -101,8 +109,10 @@ install_bbr(){
 	yum --disablerepo=\* --enablerepo=elrepo-kernel repolist
 	#查看可用的rpm包
 	yum --disablerepo=\* --enablerepo=elrepo-kernel list kernel*
+	#安装最新版本的kernel
+	yum --disablerepo=\* --enablerepo=elrepo-kernel install kernel-ml.x86_64  -y
 
-	echo "
+	cat > /etc/sysctl.conf <<-EOF
 fs.file-max = 1024000
 fs.inotify.max_user_instances = 8192
 net.core.netdev_max_backlog = 262144
@@ -139,18 +149,17 @@ net.nf_conntrack_max = 6553500
 net.ipv4.ip_forward = 1
 net.ipv4.tcp_congestion_control = cubic
 net.core.default_qdisc=fq
-	">>/etc/sysctl.conf
+EOF
 	cat /etc/sysctl.conf
 	sysctl -p
 
-	echo "
+	cat > /etc/security/limits.conf <<-EOF
 *               soft    nofile          1000000
 *               hard    nofile          1000000
-	">/etc/security/limits.conf
+EOF
 
 	echo "ulimit -SHn 1000000">>/etc/profile
-	#安装最新版本的kernel
-	yum --disablerepo=\* --enablerepo=elrepo-kernel install kernel-ml.x86_64  -y
+
 	sudo egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'
 	sudo grub2-set-default 0
 
