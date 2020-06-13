@@ -99,18 +99,40 @@ into_docker(){
 }
 
 
+
+
 install_bbr(){
 	echo -e "update kernel.@@."
+	rpm -Va --nofiles --nodigest
+	wget -N -O kernel-ml-c5.6.15.rpm https://github.com/caonimagfw/onefast/raw/master/bbr/centos/7/x64/kernel-ml-5.6.15-1.el7.elrepo.x86_64.rpm
+	wget -N -O kernel-ml-c5.6.15-headers.rpm https://github.com/caonimagfw/onefast/raw/master/bbr/centos/7/x64/kernel-ml-headers-5.6.15-1.el7.elrepo.x86_64.rpm
+
+	rpm -Va --nofiles --nodigest
+	yum install -y kernel-ml-c5.6.15.rpm 	
+	yum remove kernel-headers
+	yum install -y kernel-ml-c5.6.15-headers.rpm
+	#Error: kernel-ml-headers conflicts 
 	#载入公钥
-	rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+	
+	#rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+	#rpm -–import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
 	#升级安装ELRepo
-	rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
+	#rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm 
+	#rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
+	# rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+	#yum install https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm 
 	#载入elrepo-kernel元数据
-	yum --disablerepo=\* --enablerepo=elrepo-kernel repolist
+	#yum --disablerepo="*" --enablerepo="elrepo-kernel"  list available
+	#yum --disablerepo=\* --enablerepo=elrepo-kernel list available
 	#查看可用的rpm包
-	yum --disablerepo=\* --enablerepo=elrepo-kernel list kernel*
+	# yum –enablerepo=elrepo-kernel -y install kernel-ml kernel-ml-devel -
+
+	#yum –-enablerepo=elrepo-kernel install kernel-ml -y
+	#yum --enablerepo=elrepo-kernel install kernel-ml -y
+	#kernel-ml-
+	#yum --disablerepo='*' --enablerepo=elrepo-kernel install kernel-ml
 	#安装最新版本的kernel
-	yum --disablerepo=\* --enablerepo=elrepo-kernel install kernel-ml.x86_64  -y
+	#yum --disablerepo=\* --enablerepo=elrepo-kernel install kernel-ml.x86_64  -y
 
 	cat > /etc/sysctl.conf <<-EOF
 fs.file-max = 1024000
@@ -121,7 +143,7 @@ net.core.rmem_max = 67108864
 net.core.somaxconn = 65535
 net.core.wmem_default = 8388608
 net.core.wmem_max = 67108864
-net.ipv4.ip_local_port_range = 10240 65000
+net.ipv4.ip_local_port_range = 10000 65000
 net.ipv4.route.gc_timeout = 100
 net.ipv4.tcp_fastopen = 3
 net.ipv4.tcp_fin_timeout = 30
@@ -147,11 +169,17 @@ net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 120
 net.netfilter.nf_conntrack_tcp_timeout_time_wait = 120
 net.nf_conntrack_max = 6553500
 net.ipv4.ip_forward = 1
-net.ipv4.tcp_congestion_control = cubic
+net.ipv4.tcp_congestion_control = bbr
 net.core.default_qdisc=fq
 EOF
 	cat /etc/sysctl.conf
 	sysctl -p
+
+
+	modprobe tcp_bbr
+	sysctl -w net.core.default_qdisc=fq
+	sysctl -w net.ipv4.tcp_congestion_control=bbr
+	echo "tcp_bbr" >> /etc/modules-load.d/modules.conf
 
 	cat > /etc/security/limits.conf <<-EOF
 *               soft    nofile          1000000
@@ -163,7 +191,7 @@ EOF
 	sudo egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'
 	sudo grub2-set-default 0
 
-	echo -e "update done please reboot..."
+	echo -e "update done please reboot.@@."
 
 }
 
