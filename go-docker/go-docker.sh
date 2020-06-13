@@ -103,14 +103,13 @@ into_docker(){
 
 install_bbr(){
 	echo -e "update kernel.@@."
-	rpm -Va --nofiles --nodigest
+	# rpm -Va --nofiles --nodigest
 	wget -N -O kernel-ml-c5.6.15.rpm https://github.com/caonimagfw/onefast/raw/master/bbr/centos/7/x64/kernel-ml-5.6.15-1.el7.elrepo.x86_64.rpm
 	wget -N -O kernel-ml-c5.6.15-headers.rpm https://github.com/caonimagfw/onefast/raw/master/bbr/centos/7/x64/kernel-ml-headers-5.6.15-1.el7.elrepo.x86_64.rpm
 
-	rpm -Va --nofiles --nodigest
-	yum install -y kernel-ml-c5.6.15.rpm 	
 	yum remove kernel-headers
-	yum install -y kernel-ml-c5.6.15-headers.rpm
+	yum install -y kernel-ml-c5.6.15.rpm kernel-ml-c5.6.15-headers.rpm
+	
 	#Error: kernel-ml-headers conflicts 
 	#载入公钥
 	
