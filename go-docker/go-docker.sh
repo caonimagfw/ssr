@@ -16,7 +16,8 @@ Font_color_suffix="\033[0m"
 install_docker(){
 	#update fire wall
 	echo -e "update firewall.@@."
-	systemctl stop firewalld && yum -y upgrade firewalld
+
+	yum install -y firewalld && systemctl stop firewalld && yum -y upgrade firewalld
 	systemctl enable firewalld && systemctl restart firewalld
 	firewall-cmd --permanent --zone=trusted --add-port=8099/tcp
 	firewall-cmd --permanent --zone=trusted --add-port=80/tcp --add-port=443/tcp --add-port=8888/tcp
