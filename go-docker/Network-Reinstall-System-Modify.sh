@@ -66,7 +66,7 @@ then
 	#rm -rf wget_udeb_amd64.tar.gz
 
 	wget --no-check-certificate -qO Core_Install.sh 'https://raw.githubusercontent.com/caonimagfw/ssr/master/go-docker/Core_Install.sh' 
-	bash Core_Install.sh -c -dd 'http://127.0.0.1:8099/CentOS_7.X_NetInstallation.vhd.gz'
+	bash Core_Install.sh -dd 'http://127.0.0.1:8099/CentOS_7.X_NetInstallation.vhd.gz'
 fi
 
 if [ $1 = '-CentOS_6' ]
