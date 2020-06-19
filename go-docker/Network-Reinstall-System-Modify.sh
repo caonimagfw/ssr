@@ -45,7 +45,7 @@ then
 	echo -e "\033[33m You have chosen to install the latest CentOS_7 \033[0m"
 	echo -e "\n"
 	sleep 2s
-	wget --no-check-certificate https://github.com/caonimagfw/ssr/raw/master/reinstall/wget_udeb_amd64.tar.gz
+	#wget --no-check-certificate https://github.com/caonimagfw/ssr/raw/master/reinstall/wget_udeb_amd64.tar.gz
 	wget --no-check-certificate https://github.com/caonimagfw/ssr/raw/master/reinstall/CentOS_7.X_NetInstallation.vhd.part1.rar
 	wget --no-check-certificate https://github.com/caonimagfw/ssr/raw/master/reinstall/CentOS_7.X_NetInstallation.vhd.part2.rar
 	wget --no-check-certificate https://github.com/caonimagfw/ssr/raw/master/reinstall/CentOS_7.X_NetInstallation.vhd.part3.rar
@@ -54,19 +54,19 @@ then
 	wget --no-check-certificate https://github.com/caonimagfw/ssr/raw/master/reinstall/CentOS_7.X_NetInstallation.vhd.part6.rar
 	wget --no-check-certificate https://github.com/caonimagfw/ssr/raw/master/reinstall/CentOS_7.X_NetInstallation.vhd.part7.rar
 
-	cat CentOS_7.X_NetInstallation.vhd.part* > CentOS_7.X_NetInstallation.vhd.rar
-	rm -rf /CentOS_7.X_NetInstallation.vhd.pa*
-	unar -D  CentOS_7.X_NetInstallation.vhd.rar
+	#cat CentOS_7.X_NetInstallation.vhd.part* > CentOS_7.X_NetInstallation.vhd.rar
+	unar -D CentOS_7.X_NetInstallation.vhd.part1.rar
+	rm -rf CentOS_7.X_NetInstallation.vhd.pa*	
 	rm -rf CentOS_7.X_NetInstallation.vhd.rar
 
 	cp CentOS_7.X_NetInstallation.vhd.gz /usr/local/caddy/www
-	cp wget_udeb_amd64.tar.gz /usr/local/caddy/www
+	#cp wget_udeb_amd64.tar.gz /usr/local/caddy/www
 
 	rm -rf CentOS_7.X_NetInstallation.vhd.gz
-	rm -rf wget_udeb_amd64.tar.gz
-	
+	#rm -rf wget_udeb_amd64.tar.gz
+
 	wget --no-check-certificate -qO Core_Install.sh 'https://raw.githubusercontent.com/caonimagfw/ssr/master/go-docker/Core_Install.sh' 
-	bash Core_Install.sh -dd 'http://127.0.0.1:8099/CentOS_7.X_NetInstallation.vhd.gz'
+	bash Core_Install.sh -c -dd 'http://127.0.0.1:8099/CentOS_7.X_NetInstallation.vhd.gz'
 fi
 
 if [ $1 = '-CentOS_6' ]

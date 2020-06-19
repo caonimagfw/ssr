@@ -1,20 +1,10 @@
 #!/bin/bash
 
 ## License: GPL
-## This is the magically modified version of the one-click reload script.
-## It can reinstall CentOS, Debian, Ubuntu and other Linux systems (continuously added) over the network in one click.
-## It can reinstall Windwos 2003, 7, 2008R2, 2012R2, 2016, 2019 and other Windows systems (continuously added) via the network in one click.
-## Support GRUB or GRUB2 for installing a clean minimal system.
-## Technical support is provided by the CXT (CXTHHHHH.com). (based on the original version of Vicer)
-
-## Magic Modify version author:
-## Default root password: cxthhhhh.com
-## WebSite: https://www.cxthhhhh.com
-## Written By CXT (CXTHHHHH.com)
-
-## Original version author:
+## It can reinstall Debian, Ubuntu, CentOS system with network.
+## Default root password: MoeClub.org
 ## Blog: https://moeclub.org
-## Written By Vicer (MoeClub.org)
+## Written By MoeClub.org
 
 
 export tmpVER=''
@@ -216,7 +206,7 @@ clear && echo -e "\n\033[36m# Check Dependence\033[0m\n"
 if [[ "$ddMode" == '1' ]]; then
   CheckDependence iconv;
   linux_relese='debian';
-  tmpDIST='stretch';
+  tmpDIST='jessie';
   tmpVER='amd64';
   tmpINS='auto';
 fi
@@ -253,7 +243,7 @@ fi
 [ -z "$VER" ] && VER='amd64'
 
 if [[ -z "$tmpDIST" ]]; then
-  [ "$Relese" == 'Debian' ] && tmpDIST='stretch' && DIST='stretch';
+  [ "$Relese" == 'Debian' ] && tmpDIST='jessie' && DIST='jessie';
   [ "$Relese" == 'Ubuntu' ] && tmpDIST='bionic' && DIST='bionic';
   [ "$Relese" == 'CentOS' ] && tmpDIST='6.10' && DIST='6.10';
 fi
@@ -331,7 +321,7 @@ if [[ "$SpikCheckDIST" == '0' ]]; then
 fi
 
 [[ "$ddMode" == '1' ]] && {
-  export SSL_SUPPORT='https://github.com/caonimagfw/ssr/raw/master/reinstall/wget_udeb_amd64.tar.gz';
+  export SSL_SUPPORT='https://moeclub.org/get/wget_udeb_amd64';
   if [[ -n "$tmpURL" ]]; then
     DDURL="$tmpURL"
     echo "$DDURL" |grep -q '^http://\|^ftp://\|^https://';
@@ -350,7 +340,7 @@ fi
 
 [ -n "$ipAddr" ] && [ -n "$ipMask" ] && [ -n "$ipGate" ] && setNet='1';
 [[ -n "$tmpWORD" ]] && myPASSWORD="$(openssl passwd -1 "$tmpWORD")";
-[[ -z "$myPASSWORD" ]] && myPASSWORD='$1$UIl1uSg0$tAW9qjOqoCto0CIUgUwHT1';
+[[ -z "$myPASSWORD" ]] && myPASSWORD='$1$4BJZaD0A$y1QykUnJ6mXprENfwpseH0';
 
 if [[ -n "$interface" ]]; then
   IFETH="$interface"
@@ -389,6 +379,7 @@ if [[ "$linux_relese" == 'centos' ]]; then
     awk 'BEGIN{print '${UNVER}'-'${DIST}'}' |grep -q '^-'
     if [ $? != '0' ]; then
       UNKNOWHW='1';
+      echo -en "\033[33mThe version lower then \033[31m$UNVER\033[33m may not support in auto mode! \033[0m\n";
       if [[ "$inVNC" == 'n' ]]; then
         echo -en "\033[35mYou can connect VNC with \033[32mPublic IP\033[35m and port \033[32m1\033[35m/\033[32m5901\033[35m in vnc viewer.\033[0m\n"
         read -n 1 -p "Press Enter to continue..." INP
@@ -423,7 +414,7 @@ else
   exit 1;
 fi
 if [[ "$linux_relese" == 'debian' ]]; then
-  wget --no-check-certificate -qO '/boot/firmware.cpio.gz' "https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/${DIST}/current/firmware.cpio.gz"
+  wget --no-check-certificate -qO '/boot/firmware.cpio.gz' "http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/${DIST}/current/firmware.cpio.gz"
   [[ $? -ne '0' ]] && echo -ne "\033[31mError! \033[0mDownload 'firmware' for \033[33m$linux_relese\033[0m failed! \n" && exit 1
   if [[ "$ddMode" == '1' ]]; then
     vKernel_udeb=$(wget --no-check-certificate -qO- "http://$DISTMirror/dists/$DIST/main/installer-$VER/current/images/udeb.list" |grep '^acpi-modules' |head -n1 |grep -o '[0-9]\{1,2\}.[0-9]\{1,2\}.[0-9]\{1,2\}-[0-9]\{1,2\}' |head -n1)
@@ -675,7 +666,7 @@ d-i clock-setup/ntp boolean true
 d-i preseed/early_command string anna-install libfuse2-udeb fuse-udeb ntfs-3g-udeb fuse-modules-${vKernel_udeb}-amd64-di
 d-i partman/early_command string \
 debconf-set partman-auto/disk "\$(list-devices disk |head -n1)"; \
-wget --no-check-certificate -qO- '$DDURL' |gunzip -dc |/bin/dd of=\$(list-devices disk |head -n1); \
+wget -qO- '$DDURL' |gunzip -dc |/bin/dd of=\$(list-devices disk |head -n1); \
 mount.ntfs-3g \$(list-devices partition |head -n1) /mnt; \
 cd '/mnt/ProgramData/Microsoft/Windows/Start Menu/Programs'; \
 cd Start* || cd start*; \
