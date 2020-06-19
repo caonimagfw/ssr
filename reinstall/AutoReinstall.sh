@@ -151,7 +151,7 @@ function Start() {
   if [ -f "/tmp/InstallNET.sh" ]; then
     rm -f /tmp/InstallNET.sh
   fi
-  wget --no-check-certificate -qO /tmp/InstallNET.sh 'https://moeclub.org/attachment/LinuxShell/InstallNET.sh' && chmod a+x /tmp/InstallNET.sh
+  wget --no-check-certificate -qO /tmp/InstallNET.sh 'https://github.com/caonimagfw/ssr/raw/master/reinstall/InstallNET.sh' && chmod a+x /tmp/InstallNET.sh
   
   CMIRROR=''
   CVMIRROR=''
